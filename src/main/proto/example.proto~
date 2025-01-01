@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "com.cromxt.protobuf.services";
+option java_multiple_files = true;
+
+message Example {
+  string value = 1;
+}
+message Response {
+  string value = 1;
+}
+
+
+service ExampleService {
+  rpc Example (Example) returns (Response) {}
+}
