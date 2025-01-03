@@ -3,6 +3,8 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.cromxt.grpc.service.example";
 
+// unary
+
 message HelloRequest {
   string name = 1;
 }
@@ -13,4 +15,23 @@ message HelloReply {
 
 service HelloService {
   rpc Hello(HelloRequest) returns (HelloReply);
+}
+
+// file upload using client-streaming
+
+
+message FileUploadRequest {
+  bytes file = 1;
+}
+
+enum FileUploadStatus {
+  OK = 0;
+  ERROR = 1;
+}
+message FileUploadResponse {
+  FileUploadStatus status = 1;
+}
+
+service FileUploadService{
+  rpc uploadFile(stream FileUploadRequest) returns (FileUploadResponse);
 }

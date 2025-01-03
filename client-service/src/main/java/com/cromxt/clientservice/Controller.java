@@ -1,8 +1,7 @@
 package com.cromxt.clientservice;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.codec.multipart.FilePart;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -14,5 +13,10 @@ public record Controller (
     @GetMapping(value = "/unary")
     public Mono<String> unaryOperation(){
         return grpcClient.makeUnaryCall();
+    }
+
+    @PostMapping(value = "/client-stream")
+    public Mono<String> clientStreaming(@RequestPart(value = "file") FilePart file){
+        return grpcClient.streamingCall(file);
     }
 }

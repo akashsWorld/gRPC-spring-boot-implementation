@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 
 
 @GrpcService
-public class GrpcServiceImpl extends ReactorHelloServiceGrpc.HelloServiceImplBase {
+public class HelloServiceImpl extends ReactorHelloServiceGrpc.HelloServiceImplBase {
     @Override
     public Mono<HelloReply> hello(Mono<HelloRequest> request) {
         return request.map(helloRequest -> {
